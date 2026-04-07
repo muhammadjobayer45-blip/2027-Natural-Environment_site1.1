@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IP Tracker</title>
+</head>
+<body>
+    <h1>ট্র্যাকার টেস্ট</h1>
+    <p>Google Sheet-এ ডাটা যাচ্ছে ✅</p>
+
+    <script>
+        // ✅ তোমার Worker URL এখানে বসাও
+        const WORKER_URL = "https://my-tracker-worker.onicdm24.workers.dev/";
+
+        const data = {
+            userAgent: navigator.userAgent,
+            page: window.location.href,
+            referrer: document.referrer || "Direct"
+        };
+
+        fetch(WORKER_URL, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+        .then(res => res.text())
+        .then(text => console.log("Response:", text))
+        .catch(err => console.error("Error:", err));
+    </script>
+</body>
+</html>
